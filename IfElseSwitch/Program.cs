@@ -10,42 +10,66 @@ namespace IfElseSwitch
         public void Allocate()
         {
             var rand = new Random();
-            this.Physics = rand.Next(101);
-            this.Chemistry = rand.Next(101);
-            this.Maths = rand.Next(101);
+            this.Physics = rand.Next(10,101);
+            this.Chemistry = rand.Next(10,101);
+            this.Maths = rand.Next(10,101);
         }
-        public void Result()
+        public string Result()
         {
-            Console.WriteLine("");
+            if ((Chemistry < 40) || (Physics < 40) || (Maths < 40))
+            {
+                return ("fail");
+            }
+            else
+            {
+                return ("pass");
+            }       
         }
-    }
-    class Student:Marks
-    {
-        public string Name { get; set; }
-        public int Rno { get; set; }
-
-        public Student(string name,int rno)
+        class Student : Marks
         {
-            Name = name;
-            Rno = rno;
+            public string Name { get; set; }
+            public int Rno { get; set; }
+
+            public void Display()
+            {
+                Console.WriteLine("----------------------------------------------------------");
+                Console.WriteLine("Result for {0} : {1}", Name, Result());
+                Console.WriteLine("Physics: {0}  Chemistry: {1}  Maths: {2}", this.Physics, this.Chemistry, this.Maths);
+            }
         }
-        public void Display()
+        class Program
         {
-            Console.WriteLine("Marks : ");
-            Console.Write("Physics: {0}  Chemistry: {1}  Maths: {2}", this.Physics, this.Chemistry, this.Maths);
-        }
-    }
-    class Program
-    {
-        public static void Main()
-        {
-            Student s = new Student("aditya", 100);
+            public static void Main()
+            {
+                int num;
 
-            s.Allocate();
-            s.Display();
+                Console.WriteLine("How many Students");
+                num =Int32.Parse(Console.ReadLine());
 
-            Console.ReadLine();
+                Student []Students = new Student[num];
 
+                Console.WriteLine("Enter the names of Students :");
+
+                for (int i=0;i<num;i++)
+                {
+                    Console.WriteLine("Roll No : {0} \tName: ", i+1);
+                    Students[i] = new Student();
+
+                    Students[i].Name=Console.ReadLine();
+                    Students[i].Rno= i+1;
+                }
+                
+                for (int i = 0; i < num; i++)
+                {
+                    Students[i].Allocate();
+                }
+                for (int i = 0; i < num; i++)
+                {
+                    Students[i].Display();
+                }
+
+                Console.ReadLine();
+            }
         }
     }
 }

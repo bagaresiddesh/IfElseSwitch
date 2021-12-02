@@ -7,13 +7,20 @@ namespace IfElseSwitch
         public int Physics { get; set; }
         public int Chemistry { get; set; }
         public int Maths { get; set; }
+       
         public void Allocate()
         {
-            var rand = new Random();
-            this.Physics = rand.Next(10,101);
-            this.Chemistry = rand.Next(10,101);
-            this.Maths = rand.Next(10,101);
+            this.Physics = random();
+            this.Chemistry = random();
+            this.Maths = random();
         }
+
+        static Random rand = new Random();
+        static int random()
+        {
+            return rand.Next(10,101);
+        }
+
         public string Result()
         {
             if ((Chemistry < 40) || (Physics < 40) || (Maths < 40))
@@ -34,7 +41,9 @@ namespace IfElseSwitch
             {
                 Console.WriteLine("----------------------------------------------------------");
                 Console.WriteLine("Result for {0} : {1}", Name, Result());
-                Console.WriteLine("Physics: {0}  Chemistry: {1}  Maths: {2}", this.Physics, this.Chemistry, this.Maths);
+                Console.WriteLine("Physics: {0}  Chemistry: {1}  Maths: {2}", Physics, Chemistry, Maths);
+                Console.WriteLine("Total: {0}/300",Physics+Chemistry+Maths);
+                Console.WriteLine("Average: {0}",(Physics + Chemistry + Maths)/3);
             }
         }
         class Program

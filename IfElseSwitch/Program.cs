@@ -7,47 +7,44 @@ namespace IfElseSwitch
         public int Physics { get; set; }
         public int Chemistry { get; set; }
         public int Maths { get; set; }
-
+        public void Allocate()
+        {
+            var rand = new Random();
+            this.Physics = rand.Next(101);
+            this.Chemistry = rand.Next(101);
+            this.Maths = rand.Next(101);
+        }
         public void Result()
         {
             Console.WriteLine("");
         }
     }
-    class Student
+    class Student:Marks
     {
-        public string Name;
-        public int Rno;
+        public string Name { get; set; }
+        public int Rno { get; set; }
 
+        public Student(string name,int rno)
+        {
+            Name = name;
+            Rno = rno;
+        }
         public void Display()
         {
-            Console.WriteLine("List of all Students :");
-            for (int i = 0; i < num; i++)
-            {
-                Console.WriteLine("\tRoll No : {0}", i + 1);
-                Console.Write("\t\tName : ");
-
-            }
+            Console.WriteLine("Marks : ");
+            Console.Write("Physics: {0}  Chemistry: {1}  Maths: {2}", this.Physics, this.Chemistry, this.Maths);
         }
     }
     class Program
     {
         public static void Main()
         {
-            Console.WriteLine("How many Students");
-            int num =Int32.Parse(Console.ReadLine());
+            Student s = new Student("aditya", 100);
 
-            Student[] Students = new Student[num];
+            s.Allocate();
+            s.Display();
 
-            Console.WriteLine("Enter the names of Students :");
-
-            for (int i=0;i<num;i++)
-            {
-                Console.WriteLine("\tRoll No : {0}",i+1);
-                Console.Write("\t\tName : ");
-
-                Students[i].Name=Console.ReadLine();
-                Students[i].Rno= i+1;
-            }
+            Console.ReadLine();
 
         }
     }

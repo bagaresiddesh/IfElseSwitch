@@ -10,13 +10,13 @@ namespace IfElseSwitch
        
         public void Allocate()
         {
-            this.Physics = random();
-            this.Chemistry = random();
-            this.Maths = random();
+            Physics = Random();
+            Chemistry = Random();
+            Maths = Random();
         }
 
         static Random rand = new Random();
-        static int random()
+        static int Random()
         {
             return rand.Next(10,101);
         }
@@ -66,12 +66,10 @@ namespace IfElseSwitch
 
                     Students[i].Name=Console.ReadLine();
                     Students[i].Rno= i+1;
-                }
-                
-                for (int i = 0; i < num; i++)
-                {
+
                     Students[i].Allocate();
                 }
+                
                 for (int i = 0; i < num; i++)
                 {
                     Students[i].Display();
